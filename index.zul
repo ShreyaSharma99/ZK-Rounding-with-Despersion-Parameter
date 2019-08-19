@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul" xmlns:n="native">
+    <style>
+        .text{
+        font-weight: bold;
+        font-family: 'Arial';
+        color: black;
+        font-size:50px;
+        background-color: #ffe6ff;
+        }
+    </style>
+    <style>
+        .text2{
+        font-family: 'Arial';
+        color: black;
+        font-size:16px;
+        background-color: #ffe6ff;
+        font-style: italic;
+        }
+    </style>
+    
+    <window id="test"  border="none" position="parent" mode="embedded" width="100%" 
+            contentStyle="background:#6666ff,overflow:auto" height="100%"  
+            apply="org.zkoss.bind.BindComposer, Controlador.LongOperationComposer"
+            viewModel="@id('vm') @init('Controlador.Rounding_Main')">
+        <borderlayout>
+            <north size="15%"  style="background:#ffe6ff">
+                <vbox  vflex="1" hflex="1" pack="center" align="center">
+                    <hbox style="text-align: center">
+                        <image id="ico" src="/Images/udasys3Logo.png" width="50px"  height="50px"/>
+                        <label value="DataRounding" sclass="text" style="text-align:center"/>
+                    </hbox>
+                    <separator bar="true"/>
+                    <label id="text2" value="Submitted to: " sclass="text2" />
+                </vbox>  
+            </north>
+            
+            <south size="85%">
+                <borderlayout>
+                    <west title="Menu options" size="200px" collapsible="false" style="background:#e6f7ff">
+                        <vbox style="text-align: center">
+                            <menubar id="menubar" orient="vertical" width="100%"  autodrop="true">
+                                <menu src="/Images/Files.png" label="Open file" width="200px" sclass="textb" >
+                                    <menupopup>
+                                        <menuitem src="/Images/Files.png" label="Only Central Tendency Template" upload="true" onUpload="@command('openFileCT',upEvent=event)" onClick="@command('openFileCT')"/>
+                                        <menuseparator/>
+                                        <menuitem src="/Images/Files.png" label="Central Tendency and Dispersion Template" upload="true" onUpload="@command('openFileCTandD',upEvent=event)" onClick="@command('openFileCTandD')"/>
+                                    </menupopup>
+                                </menu>
+
+                                <menuitem src="/Images/udasys3Logo.png" label="Rounding (CT) Options" onClick="@command('windowCTonly')" visible="@load(vm.ctMenuOptions)" autodisable="+self"/>
+
+                                <menuitem src="/Images/udasys3Logo.png" label="Rounding (CT with DP) Options" onClick="@command('windowCTwithDP')" visible="@load(vm.ctdMenuOptions)" autodisable="+self"/>
+
+                                <menuitem src="/Images/udasys2Logo.png" id="ct" label="Download (CT) Results" width="200px" onClick="@command('FinalResultsCT')" visible="@load(vm.resultCTonly)" autodisable="+self"/>
+                                <menuitem src="/Images/udasys2Logo.png" id="ctdp" label="Download (CT with DP) Results" width="200px" onClick="@command('FinalResultsCTD')" visible="@load(vm.resultCTwithDP)" autodisable="+self"/>
+                            
+                            </menubar>
+                        </vbox>
+                    </west>
+                    
+                    <center  border="none" style="background:#99ccff" >
+                        <tabbox width="100%" height="100%">
+                            <tabs>
+                                <tab label="File Open" visible="@load(vm.fileOpenAllCTD)"/>
+                                
+                                <tab label="Central Tendency results" visible="@load(vm.resultCTonly)"/>
+                                <tab label="Central Tendency with Dispersion Parameter results" visible="@load(vm.resultCTwithDP)"/>
+                            </tabs>
+                            <tabpanels>
+                                <tabpanel style="color:#336699;">
+                                    <vbox visible="@load(vm.inicio)"  hflex="1" pack="center" align="center">
+                                        <html>
+<![CDATA[
+<head>
+<style>
+header {
+    background-color:#819FF7;
+    color:black;
+    text-align:center;
+    padding:3px;	 
+}
+section {
+    text-align: justify;
+    width="100%";
+    height="100%";
+    color: black;
+    float:left;
+    padding:5px;	 	 
+}
+
+</style>
+</head>
+<body>
+
+<header>
+<td style="text-align: justify;">
+<span style="font-size:30px;">
+<span style="text-align: justify;">
+<span style="line-height: 1.5";>
+This program was published by .............; please cite:
+</span></span></td>
+</header>
+
+<section>
+<p>
+<td style="text-align: justify;">
+<span style="font-size:20px;">
+<span style="text-align: justify;">
+<span style="line-height: 1.5";>
+<font color="red">......................</font>
+</span></span></td>
+<p>
+DataRounding
+</p>
+
+<p>
+<span style="font-size:20px;">
+<span style="text-align: justify;">
+<span style="line-height: 1.5";>
+This online program allows the user to understand the rounding rules needed to report their experimental data results.
+The user must open an Excel file; an example file is provided at this server.
+                                            
+For more details, consult the following paper:
+...................
+</section>
+</body>]]>
+                                        </html>
+                                    </vbox>         
+                                    
+                                    <window mode="embedded" visible="@load(vm.fileOpenAllCTD)" width="100%"  height="100%" minimizable="false">
+                                        <!--
+                                        <grid  autopaging="true" mold="paging" vflex="1" sizedByContent="true" width="100%"  height="50%">
+                                        </grid>  
+                                        -->
+                                        <borderlayout>
+                                            <north title="Validated Data" size="@load(vm.showTableA1)" visible="@load(vm.openFile)" style="overflow:scroll;">
+                                                <grid width="@load(vm.numcol1)" mold="paging">
+                                                    <columns children="@load(vm.headers)" >
+                                                        <template name="children"> 
+                                                            <column label="@load(each)" />
+                                                        </template>
+                                                    </columns>
+                                                    <rows children="@load(vm.validatedBody)">
+                                                        <template name="children">
+                                                            <row children="@load(each)" >
+                                                                <template name="children" var="celda">
+                                                                    <label value="@load(celda)"/>
+                                                                </template>
+                                                            </row>
+                                                        </template>
+                                                    </rows>
+                                                </grid>
+                                            </north>
+                                            <south title="Errors" size="@load(vm.showTableB1)" visible="@load(vm.wefounderrors1)" style="overflow:scroll;">
+                                                <grid mold="paging">
+                                                    <columns>
+                                                        <column label="Row(s) or Column(s)" width="15%"/>
+                                                        <column label="Description" width="55%"/>
+                                                        <column label="Error(s) found" width="30%"/>
+                                                    </columns>
+                                                    <rows children="@load(vm.errors)">
+                                                        <template name="children">
+                                                            <row children="@load(each)" >
+                                                                <template name="children" var="celda">
+                                                                    <label value="@load(celda)"/>
+                                                                </template>
+                                                            </row>
+                                                        </template>
+                                                    </rows>
+                                                </grid>
+                                            </south>
+                                        </borderlayout>
+                                    </window>
+                                </tabpanel>
+                                
+                                <!-- CTonly -->
+                                <tabpanel style="color:#333399;">
+                                    <window visible="@load(vm.resultCTonly)" width="100%"  height="100%">
+                                        <hbox style="text-align: center">
+                                            <menubar id="menubar" orient="horizontal" width="100%"  autodrop="true">
+                                                <menuitem label="Download information" src="/Images/Files.png" width="160px" onClick="@command('FinalResultsCT')"/>
+                                            </menubar>
+                                        </hbox>
+                                        <borderlayout>
+                                            <!--do-->
+                                            <north title="Parameter results" size="@load(vm.showTableA1)" visible="@load(vm.resultCTonly)" style="overflow:scroll;"  >
+                                                <grid width="@load(vm.numcol1)" mold="paging">
+                                                    <columns children="@load(vm.reportHead)" >
+                                                        <template name="children"> 
+                                                            <column label="@load(each)" />
+                                                        </template>
+                                                    </columns>
+                                                    <rows children="@load(vm.reportResult)">
+                                                        <template name="children">
+                                                            <row children="@load(each)" >
+                                                                <template name="children" var="celda">
+                                                                    <label value="@load(celda)"/>
+                                                                </template>
+                                                            </row>
+                                                        </template>
+                                                    </rows>
+                                                </grid>
+                                            </north>
+                                        </borderlayout>
+                                    </window>
+                                </tabpanel>
+                                
+                                <!-- CTwithDP -->
+                                <tabpanel style="color:#333399;">
+                                    <window visible="@load(vm.resultCTwithDP)" width="100%"  height="100%">
+                                        <hbox style="text-align: center">
+                                            <menubar id="menubar" orient="horizontal" width="100%"  autodrop="true">
+                                                <menuitem label="Download information" src="/Images/Files.png" width="160px" onClick="@command('FinalResultsCTD')"/>
+                                            </menubar>
+                                        </hbox>
+                                        <borderlayout>
+                                            <!--do-->
+                                            <north title="Parameter results" size="@load(vm.showTableA1)" visible="@load(vm.resultCTwithDP)" style="overflow:scroll;"  >
+                                                <grid width="@load(vm.numcol1)" mold="paging">
+                                                    <columns children="@load(vm.reportHead)" >
+                                                        <template name="children"> 
+                                                            <column label="@load(each)" />
+                                                        </template>
+                                                    </columns>
+                                                    <rows children="@load(vm.reportResult)">
+                                                        <template name="children">
+                                                            <row children="@load(each)" >
+                                                                <template name="children" var="celda">
+                                                                    <label value="@load(celda)"/>
+                                                                </template>
+                                                            </row>
+                                                        </template>
+                                                    </rows>
+                                                </grid>
+                                            </north>
+                                        </borderlayout>
+                                    </window>
+                                </tabpanel>
+                            </tabpanels>
+                        </tabbox>
+                    </center>
+                    
+                    <east size="1%" border="none" >
+                    </east>
+                </borderlayout>
+            </south>
+        </borderlayout>
+        <vbox>
+            
+            <iframe height="10%" width="10%" id="reportframeCTonly" content="@bind(vm.fileContentOut)"/>
+            <iframe height="10%" width="10%" id="reportframeCTwithDP" content="@bind(vm.fileContentOut2)"/>
+            
+             
+        </vbox>
+    </window>
+</zk>

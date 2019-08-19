@@ -1,0 +1,20 @@
+package SimulatedValues;
+
+public class Get_cv_t_2 {
+	//ecuaciones de interpolacion
+	public static double[] t(double v){
+		double t[]=new double[11];
+		t[0]=	0.691015874	-	0.045826760	*Math.pow(Math.log(Math.log(Math.log(v))), 1)+	0.019334010*Math.pow(Math.log(Math.log(Math.log(v))), 2)	+	0.027617490*Math.pow(Math.log(Math.log(Math.log(v))), 3)	+	0.000614170*Math.pow(Math.log(Math.log(Math.log(v))), 4)	-	0.014964040	*Math.pow(Math.log(Math.log(Math.log(v))), 5)-	0.007912880	*Math.pow(Math.log(Math.log(Math.log(v))), 6)+	0.000491558*Math.pow(Math.log(Math.log(Math.log(v))), 8);
+		t[1]=	0.994775040	-	0.176262400*Math.pow(Math.log(Math.log(v)), 1)	+	0.029972000*Math.pow(Math.log(Math.log(v)), 2)	+	0.011129000*Math.pow(Math.log(Math.log(v)), 3)	+	0.021067000*Math.pow(Math.log(Math.log(v)), 4)	-	0.018965500*Math.pow(Math.log(Math.log(v)), 5)	+	0.004337870*Math.pow(Math.log(Math.log(v)), 6)	-	0.000066877*Math.pow(Math.log(Math.log(v)), 8);
+		t[2]=	1.276185260	-	0.285831400*Math.pow(Math.log(Math.log(v)), 1)	+	0.049542000*Math.pow(Math.log(Math.log(v)), 2)	+	0.044559000*Math.pow(Math.log(Math.log(v)), 3)	-	0.004099000*Math.pow(Math.log(Math.log(v)), 4)	-	0.009526500*Math.pow(Math.log(Math.log(v)), 5)	+	0.002313020*Math.pow(Math.log(Math.log(v)), 6);		
+		t[3]=	1.684588050	-	0.510486200*Math.pow(Math.log(Math.log(v)), 1)	+	0.124736400*Math.pow(Math.log(Math.log(v)), 2)	+	0.066533000*Math.pow(Math.log(Math.log(v)), 3)	-	0.019781800*Math.pow(Math.log(Math.log(v)), 4)	-	0.008211550*Math.pow(Math.log(Math.log(v)), 5)	+	0.002601970*Math.pow(Math.log(Math.log(v)), 6);		
+		t[4]=	2.456312000	-	1.134467800*Math.pow(Math.log(Math.log(v)), 1)	+	0.415229200*Math.pow(Math.log(Math.log(v)), 2)	+	0.07032580*Math.pow(Math.log(Math.log(v)), 3)	-	0.059502700*Math.pow(Math.log(Math.log(v)), 4)	+	0.002112000*Math.pow(Math.log(Math.log(v)), 5)	+	0.001865000*Math.pow(Math.log(Math.log(v)), 6);		
+		t[5]=	3.377525340	-	2.169985900*Math.pow(Math.log(Math.log(v)), 1)	+	1.016399100*Math.pow(Math.log(Math.log(v)), 2)	+	0.035163000*Math.pow(Math.log(Math.log(v)), 3)	-	0.194803000*Math.pow(Math.log(Math.log(v)), 4)	+	0.080056000*Math.pow(Math.log(Math.log(v)), 5)	-	0.015210200*Math.pow(Math.log(Math.log(v)), 6)	+	0.000412068*Math.pow(Math.log(Math.log(v)), 8);
+		t[6]=	4.940021030	-	4.502255400*Math.pow(Math.log(Math.log(v)), 1)	+	2.785764000*Math.pow(Math.log(Math.log(v)), 2)	-	0.485943000*Math.pow(Math.log(Math.log(v)), 3)	-	0.305189000*Math.pow(Math.log(Math.log(v)), 4)	+	0.216257000*Math.pow(Math.log(Math.log(v)), 5)	-	0.050604800*Math.pow(Math.log(Math.log(v)), 6)	+	0.001324793*Math.pow(Math.log(Math.log(v)), 8);
+		t[7]=	6.485572530	-	7.346222300*Math.pow(Math.log(Math.log(v)), 1)	+	5.418770000*Math.pow(Math.log(Math.log(v)), 2)	-	1.721741000*Math.pow(Math.log(Math.log(v)), 3)	-	0.093016500*Math.pow(Math.log(Math.log(v)), 4)	+	0.274850000*Math.pow(Math.log(Math.log(v)), 5)	-	0.077963900*Math.pow(Math.log(Math.log(v)), 6)	+	0.002216240*Math.pow(Math.log(Math.log(v)), 8);
+		t[8]=	8.454516820	-	11.52869800*Math.pow(Math.log(Math.log(v)), 1)	+	9.834948000*Math.pow(Math.log(Math.log(v)), 2)	-	4.271414000*Math.pow(Math.log(Math.log(v)), 3)	+	0.669660000*Math.pow(Math.log(Math.log(v)), 4)	+	0.214600000*Math.pow(Math.log(Math.log(v)), 5)	-	0.096372500*Math.pow(Math.log(Math.log(v)), 6)	+	0.003252530*Math.pow(Math.log(Math.log(v)), 8);
+		t[9]=	3.725076310	-	2.023618250	*Math.pow(Math.log(Math.log(Math.log(v))), 1)+	1.641911660*Math.pow(Math.log(Math.log(Math.log(v))), 2)	+	0.374190700*Math.pow(Math.log(Math.log(Math.log(v))), 3)	-	0.435436440*Math.pow(Math.log(Math.log(Math.log(v))), 4)	-	0.227669200	*Math.pow(Math.log(Math.log(Math.log(v))), 5)-	0.032859000*Math.pow(Math.log(Math.log(Math.log(v))), 6);		
+		t[10]=	4.063188060	-	2.507085430	*Math.pow(Math.log(Math.log(Math.log(v))), 1)+	2.161703820*Math.pow(Math.log(Math.log(Math.log(v))), 2)	+	0.294774900*Math.pow(Math.log(Math.log(Math.log(v))), 3)	-	0.563863370*Math.pow(Math.log(Math.log(Math.log(v))), 4)	-	0.209043750	*Math.pow(Math.log(Math.log(Math.log(v))), 5)-	0.017617606*Math.pow(Math.log(Math.log(Math.log(v))), 6);		
+		return t;
+	}
+}

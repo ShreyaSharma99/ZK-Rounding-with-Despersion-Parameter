@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul" xmlns:n="native">
+       <window title="Central Tendency Rounding tests menu" border="normal" id="options"
+            apply="org.zkoss.bind.BindComposer, Controlador.LongOperationComposer" 
+            width="600px" height="300px" closable="false" 
+            viewModel="@id('vm') @init('Controlador.CTonly')">
+        <radiogroup id="significant_digits"/>
+        <radiogroup id="intDecimal"/>
+        <borderlayout>
+            <north size="40%" style="background:#eff7fc">
+                <hbox width="100%" height="100%" pack="center" align="center">
+                    <label style="color:black;font-size:14pt" value="Depending on whether the validated data set is Integer type or Decimal type choose the data type and the number of significant digits in integer numbers or the number of decimal places in decimal numbers needed after rounding."/>
+                </hbox>
+            </north>
+            <center style="background:#eff7fc">
+                <vlayout>
+                    <hbox width="100%" height="100%" pack="center" align="center">
+                    <label value="Integer/Fraction"/>
+                    </hbox>
+                    <grid>
+                        <rows>
+                            <row> 
+                                <radio label="Integer" onCheck="@command('deci_false')"  radiogroup="intDecimal" style="blue" />
+                                <radio label="Fraction" onCheck="@command('deci_true')" radiogroup="intDecimal" style="color:red" checked="true"/>
+                            </row>
+                        </rows>
+                    </grid>
+                    <hbox width="100%" height="100%" pack="center" align="center">
+                    <label value="Significant Digits (Integer data) or Decimal Places (Fractional Data)"/>
+                    </hbox>
+                    <grid>
+                        <rows>
+                            <row> 
+                                <radio label="1" onCheck="@command('sig_1')"  radiogroup="significant_digits" style="color:red" />
+                                <radio label="2" onCheck="@command('sig_2')"  radiogroup="significant_digits" style="color:blue" checked="true"/>
+                                <radio label="3" onCheck="@command('sig_3')"  radiogroup="significant_digits" />
+                                <radio label="4" onCheck="@command('sig_4')"  radiogroup="significant_digits" style="color:red" />
+                                <radio label="5" onCheck="@command('sig_5')"  radiogroup="significant_digits" style="color:blue" />
+                                <radio label="6" onCheck="@command('sig_6')"  radiogroup="significant_digits" />
+                                <radio label="7" onCheck="@command('sig_7')"  radiogroup="significant_digits" style="color:red" />
+                            </row>
+                        </rows>
+                    </grid>
+                </vlayout>
+            </center>
+            <south size="20%" style="background:#eff7fc">
+                <hbox hflex="1" pack="center" align="center">
+                    <button id="procButton" label="Accept" onLongOp="@command('process_file')"/>
+                    <button label="Cancel" onClick="options.detach()"/>
+                </hbox>
+            </south>
+        </borderlayout>
+    </window>
+</zk>

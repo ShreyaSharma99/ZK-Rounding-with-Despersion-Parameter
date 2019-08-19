@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul" xmlns:n="native">
+    <window title="Central Tendency with Dispersion Parameter Rounding tests menu" border="normal" id="options"
+            apply="org.zkoss.bind.BindComposer, Controlador.LongOperationComposer" 
+            width="600px" height="300px" closable="false" 
+            viewModel="@id('vm') @init('Controlador.CTwithDP')">
+        <radiogroup id="strictFlex"/>
+        <radiogroup id="dispersion"/>
+        <borderlayout>
+            <north size="40%" style="background:#eff7fc">
+                <hbox width="100%" height="100%" pack="center" align="center">
+                    <label style="color:black;font-size:14pt" value="Recommended procedure does flexible rounding of data using uncertainity as dispersion parameter. Do you wish to change it?"/>
+                </hbox>
+            </north>
+            <center style="background:#eff7fc">
+                <vlayout>
+                    <hbox width="100%" height="100%" pack="center" align="center">
+                    <label value="Flexibility level"/>
+                    </hbox>
+                    <grid>
+                        <rows>
+                            <row> 
+                                <radio label="Flexible" onCheck="@command('setFlexible')"  radiogroup="strictFlex" style="color:red" checked="true"/>
+                                <radio label="Strict" onCheck="@command('setStrict')" radiogroup="strictFlex" style="color:blue"/>
+                            </row>
+                        </rows>
+                    </grid>
+<!--                </vlayout>
+                <vlayout>-->
+                    <hbox width="100%" height="100%" pack="center" align="center">
+                    <label value="Dispersion Parameter"/>
+                    </hbox>
+                    <grid>
+                        <rows>
+                            <row> 
+                                <radio label="standard deviation" onCheck="@command('setDP_1')"  radiogroup="dispersion" style="color:red"/>
+                                <radio label="standard error" onCheck="@command('setDP_2')"  radiogroup="dispersion" style="color:black"/>
+                                <radio label="uncertainity at 95% CL" onCheck="@command('setDP_3')" radiogroup="dispersion" style="color:blue" checked="true"/>
+                                <radio label="uncertainity at 99% CL" onCheck="@command('setDP_4')" radiogroup="dispersion" style="color:red"/>
+                            </row>
+                        </rows>
+                    </grid>
+                </vlayout>
+            </center>
+            <south size="20%" style="background:#eff7fc">
+                <hbox hflex="1" pack="center" align="center">
+                    <button id="procButton" label="Accept" onLongOp="@command('process_file')"/>
+                    <button label="Cancel" onClick="options.detach()"/>
+                </hbox>
+            </south>
+        </borderlayout>
+    </window>
+</zk>
